@@ -1,5 +1,5 @@
 # HRmanagementSystem
-A simple website based on PHP & mySQL
+A simple webapp based on PHP & mySQL
 
 If running for the first time:-
 
