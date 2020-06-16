@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,7 +10,7 @@ function Login()
 }
 if(!Login())
 {
-	header("Location: Log_in.php");
+	header("Location: index.php");
 }
 
 ?>
@@ -36,12 +36,12 @@ if(!Login())
     	{
     		if(empty($_POST['first_name'])) { $fNameError = "First Name is Required"; $noError = 0; }
     		else
-    		{    			
+    		{
     			if(!preg_match("/^[A-Za-z\.]*$/",Test_User_Input($_POST["first_name"])))
     			{
     			    $fNameError="Only Letters are allowed";
     			    $noError = 0;
-    			} 
+    			}
     			else
     			{
     				$fName = Test_User_Input($_POST["first_name"]) ;
@@ -49,12 +49,12 @@ if(!Login())
     		}
     		if(empty($_POST['last_name'])) { $lNameError = "Last Name is Required"; $noError = 0; }
     		else
-    		{    			
+    		{
     			if(!preg_match("/^[A-Za-z]*$/",Test_User_Input($_POST["last_name"])))
     			{
     			    $lNameError="Only Letters are allowed";
     			    $noError = 0;
-    			} 
+    			}
     			else
     			{
     				$lName = Test_User_Input($_POST["last_name"]) ;
@@ -66,7 +66,7 @@ if(!Login())
 				$noError = 0;
  			}
  			else
- 			{				
+ 			{
 				if(!preg_match("/[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9._-]{3,}[.]{1}[a-zA-Z0-9._-]{2,}/",Test_User_Input($_POST['Email'])))
                 {
 					$EmailError="Invalid Email Format";
@@ -76,7 +76,7 @@ if(!Login())
 				{
 					$f=0;
 					$fetch = mysql_query("SELECT * FROM emp_list");
-					while ($data = mysql_fetch_array($fetch)) 
+					while ($data = mysql_fetch_array($fetch))
 					{
 						if($data['email']==$_POST['Email'])
 						{
@@ -87,10 +87,10 @@ if(!Login())
 					if($f==0) $Email = Test_User_Input($_POST['Email']);
 				}
 			}
-			
+
 
           $Department = Test_User_Input($_POST['department']);
-            
+
 
 			if(empty($_POST['phone_no']))
 			{
@@ -108,7 +108,7 @@ if(!Login())
 				{
 					$f=0;
 					$fetch = mysql_query("SELECT * FROM emp_list");
-					while ($data = mysql_fetch_array($fetch)) 
+					while ($data = mysql_fetch_array($fetch))
 					{
 						if($data['phone_no']==$_POST['phone_no'])
 						{
@@ -144,7 +144,7 @@ if(!Login())
  			else
  			{
 				$Gender=Test_User_Input($_POST['Gender']);
-			}		
+			}
 			if(empty($_POST['Address']))
 			{
 				$AddError="Address is Required";
@@ -160,7 +160,7 @@ if(!Login())
 				$noError = 0;
  			}
  			else
- 			{				
+ 			{
 				if(!preg_match("/[a-zA-Z0-9._@]{8,}/",Test_User_Input($_POST['set_password'])))
                 {
 					$SetPassError="Invalid Password Format ( only '.' , '@' , '_' , a-z , A-z , 0-9 are allowed. Min Length = 8 )";
@@ -177,7 +177,7 @@ if(!Login())
 				$noError = 0;
  			}
  			else
- 			{				
+ 			{
 				if( $tempPass != Test_User_Input($_POST['confirm_password']) )
                 {
 					$ConfirmPassError = "Password Mismatch";
@@ -189,8 +189,8 @@ if(!Login())
 				}
 			}
 
-			if($noError == 1) 
-			{				
+			if($noError == 1)
+			{
 				$query = "INSERT into emp_list(first_name,last_name,email,department,password,salary,address,phone_no,gender) VALUES('$fName','$lName','$Email','$Department','$Password','$salary','$Address','$phone_no','$Gender')";
 				if(mysql_query($query))
 				{
@@ -200,9 +200,9 @@ if(!Login())
                                 alert(\"Employee Added\");
                             </script>
                          ";
-				}			
-				
-			}	
+				}
+
+			}
 
     	}
     ?>
@@ -227,7 +227,7 @@ if(!Login())
     <link rel="stylesheet" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body> 
+<body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color:#ffb800;height:79px;position:fixed;width: 100%;">
         <div class="container"><a class="navbar-brand" href="#" style="color:#262228;margin-right:70px;"><strong>ADMIN PANEL</strong></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
@@ -249,7 +249,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
     <div class="register-photo" style=" background-color:rgba(241,247,252,0);background-image:url(&quot;assets/img/background-desk-desktop-background-1097930.jpg&quot;);background-size:cover;">
@@ -270,7 +270,7 @@ if(!Login())
                 	</div>
                 	<div style="padding:8px 16px; background-color: white; margin-bottom:15px;">
                 	<input style="margin-right: 7px;" type="radio" class="radio" name="Gender" value="Male" >Male
-					<input style="margin-left: 5%; margin-right: 7px;" type="radio" class="radio" name="Gender" value="Female">Female   
+					<input style="margin-left: 5%; margin-right: 7px;" type="radio" class="radio" name="Gender" value="Female">Female
 				    </div>
                 	<div class="Error">
                 		<?php echo $PhnError; ?>
@@ -284,29 +284,29 @@ if(!Login())
                         <div class="Error">
                 			<?php echo $deptError; ?>
                 		</div>
-                        <select class="form-control" style="margin-bottom:14px; background-color: white;" name="department">                                                
-                        <option value="Admin" >Admin</option>             
+                        <select class="form-control" style="margin-bottom:14px; background-color: white;" name="department">
+                        <option value="Admin" >Admin</option>
                         <option value="General Office" selected="true">General Office</option>
                         <option value="Sales Department" >Sales Department</option>
                         <option value="Accounts Department" >Accounts Department</option>
                         <option value="Production Department" >Production Department</option>
                         <option value="Personnel Department" >Personnel Department</option>
-                        <option value="Export Department" >Export Department</option></select>                          
+                        <option value="Export Department" >Export Department</option></select>
                     <div class="Error">
                         <?php echo $salError; ?>
                     </div>
-                    <input class="form-control" type="text" name="salary" placeholder="Base Salary" value="<?php echo isset($_POST['salary']) ? $_POST['salary'] : '' ?>" style="margin-bottom:14px; background-color: white;"> 
+                    <input class="form-control" type="text" name="salary" placeholder="Base Salary" value="<?php echo isset($_POST['salary']) ? $_POST['salary'] : '' ?>" style="margin-bottom:14px; background-color: white;">
 
                     <div class="Error">
                 		<?php echo $AddError; ?>
-                	</div>                              
+                	</div>
                     <textarea
                         class="form-control" name="Address" placeholder="Address" value="<?php echo isset($_POST['Address']) ? $_POST['Address'] : '' ?>" style="margin-bottom:14px;height:125px; background-color: white;"></textarea>
                 	<div class="Error">
                 		<?php echo $SetPassError; ?>
                 	</div>
                         <input class="form-control" type="password" name="set_password" value="<?php echo isset($_POST['set_password']) ? $_POST['set_password'] : '' ?>" placeholder="Password" style=" background-color: white; margin-bottom:14px;">
-                	
+
                 	<div class="Error">
                 		<?php echo $ConfirmPassError; ?>
                 	</div>
@@ -316,7 +316,7 @@ if(!Login())
             </form>
         </div>
     </div>
-    
+
 </body>
 
 </html>

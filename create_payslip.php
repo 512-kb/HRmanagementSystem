@@ -2,7 +2,7 @@
 <html>
 
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -11,7 +11,7 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
@@ -35,7 +35,7 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM emp_list WHERE department='$dept'");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$_POST['emp_id'])
                 {
@@ -43,7 +43,7 @@ if(!Login())
                     $sal=$data['salary'];
                     $mail=$data['email'];
                     $name=$data['first_name'];
-                    $f=1; 
+                    $f=1;
                     break;
                 }
             }
@@ -54,7 +54,7 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM salary");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$id)
                 {
@@ -63,24 +63,24 @@ if(!Login())
                     $ta = $data['ta'];
                     $da = $data['da'];
                     $ded = $data['leave_deduction'];
-                    $f=1; 
+                    $f=1;
                     break;
                 }
             }
-            if($f==1)  
+            if($f==1)
             {
                 $amount = $sal-$gpf-$gsi-$ded+$ta+$da ;
-                mail($mail, 'SALARY CREDITED', 'Hi '.$name.'! Your account has been credited with amount: Rs.'.$amount,'From: h.r.budddddy@gmail.com');                
+                mail($mail, 'SALARY CREDITED', 'Hi '.$name.'! Your account has been credited with amount: Rs.'.$amount,'From: h.r.budddddy@gmail.com');
                 echo "
                         <script>
                             alert(\"Salary Paid\");
                         </script>
-                     ";             
-            }  
+                     ";
+            }
             else
             {
-               $ERROR = "Record not find! Update the record first";                
-            }  
+               $ERROR = "Record not find! Update the record first";
+            }
         }
     }
 
@@ -128,7 +128,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
     <div class="contact-clean" style="background-color:rgba(241,247,252,0);">
@@ -157,7 +157,7 @@ if(!Login())
                 <button class="btn btn-primary" name="submit_button" type="submit" style="margin-left:137px;margin-top:40px;">GENERATE</button></div>
         </form>
     </div>
-    
+
 </body>
 
 </html>

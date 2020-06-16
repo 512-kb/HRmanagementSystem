@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 
     session_start();
     $_SESSION['UserId'] = "";
@@ -12,13 +12,10 @@
         if(isset($_POST['Submit']))
         {
             $exec = mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
-            if(empty($_POST['email']))  
-            {
-                $emailerror = "Email Required";
-            }
+            if(empty($_POST['email']))  $emailerror = "Email Required";
             else
             {
-                $select = mysql_query("SELECT * FROM emp_list WHERE department='Admin'");   
+                $select = mysql_query("SELECT * FROM emp_list WHERE department='Admin'");
                 $id=""; $pass=""; $f=0;
                 while($data=mysql_fetch_array($select))
                 {
@@ -104,7 +101,7 @@
             <div class="form-group"><button class="btn btn-primary btn-block" type="Submit" name="Submit" style="color:rgb(14,10,37);background-color:rgb(255,181,38);">Log In</button></div>
         </form>
     </div>
-    
+
 </body>
 
 </html>

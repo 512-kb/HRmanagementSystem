@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,24 +10,24 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
 
-<?php 
+<?php
 
     $FLAG=0; $f=0;
     mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
     $daterror = ""; $IDerror=""; $noError = 1; $dept=""; $date="";
     if(isset($_POST['view_button']))
-    {        
+    {
         $dept=$_POST['department'];
         if(!empty($_POST['date']))
         {
             $noError = 0; $datef=0;
             $q = mysql_query("SELECT * FROM attendance");
-            while ($data = mysql_fetch_array($q)) 
+            while ($data = mysql_fetch_array($q))
             {
                 if($_POST['date']==$data['date'] && $_POST['department']==$data['department'])
                 {
@@ -41,18 +41,18 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM emp_list WHERE department='$dept'");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$_POST['emp_id'])
                 {
-                    $emp_id=$_POST['emp_id']; $f=1; 
+                    $emp_id=$_POST['emp_id']; $f=1;
                     break;
                 }
             }
             if($f==0) { $IDerror = "Invalid ID"; $noError=0; }
         }
         if($noError==0) $FLAG=0; else $FLAG=1;
-    } 
+    }
 ?>
 
 
@@ -94,7 +94,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
      <div class="contact-clean" style="background-color:rgba(241,247,252,0);">
@@ -110,7 +110,7 @@ if(!Login())
                     <option value="Production Department">Production Department</option>
                     <option value="Personnel Department">Personnel Department</option>
                     <option value="Export Department">Export Department</option>
-                </select> 
+                </select>
                 ID(optional):<br>
                 <input class="form-control" type="number" name="emp_id" placeholder="Employee ID" value="<?php echo isset($_POST['emp_id']) ? $_POST['emp_id'] : '' ?>" style="margin-top:0px;width:100%;">
                 <div class="Error">
@@ -124,11 +124,11 @@ if(!Login())
             </div>
 
             <button class="btn btn-primary" type="submit" name="view_button" style="background-color:#1a0448;font-family:Roboto, sans-serif;margin-left:153px;margin-top:10px;">VIEW</button>
-        </form>      
+        </form>
     </div><?php if($FLAG==1) echo "
     <div><center>
         <form method=post style=\"  background-color:rgba(76,175,181,0.2); width: 60%;  padding:20px; \">
-            <div class=table-responsive>    
+            <div class=table-responsive>
                  <table id=example class=table table-striped table-bordered width=100%>
                         <thead>
                             <tr>
@@ -140,36 +140,36 @@ if(!Login())
                         <tbody>"
             ?>
         <?php
-    
+
     if($noError==1)
     {
-        $id=""; $status=""; $name="";         
-        
+        $id=""; $status=""; $name="";
+
             mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
-            
+
             if(!empty($_POST['emp_id'])) $q=mysql_query("SELECT * FROM attendance WHERE date='$date' AND department='$dept' AND id='$emp_id'");
             else $q=mysql_query("SELECT * FROM attendance WHERE date='$date' AND department='$dept'");
-            
-            
-            while ($data=mysql_fetch_array($q)) 
+
+
+            while ($data=mysql_fetch_array($q))
             {
-                $id=$data['id']; $status=$data['status']; 
-                $q1=mysql_query("SELECT first_name FROM emp_list WHERE id=$id");          
+                $id=$data['id']; $status=$data['status'];
+                $q1=mysql_query("SELECT first_name FROM emp_list WHERE id=$id");
                 $data1=mysql_fetch_array($q1);
-                $name=$data1['first_name'];   
+                $name=$data1['first_name'];
 
                 echo "<tr>
                         <td width=20%>".$id."</td>
-                        <td width=40%>".$name."</td>                        
-                        <td width=40%>".$status."</td>        
-                      </tr>                 
-                    ";                
-            } 
-         
+                        <td width=40%>".$name."</td>
+                        <td width=40%>".$status."</td>
+                      </tr>
+                    ";
+            }
+
     }
 
         ?>
-        
+
                     </tbody>
                 </table>
             </div>

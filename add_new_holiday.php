@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,7 +10,7 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
@@ -27,7 +27,7 @@ if(!Login())
             {
                 $f=0;
                 $q = mysql_query("SELECT * FROM holidays");
-                while($data = mysql_fetch_array($q)) 
+                while($data = mysql_fetch_array($q))
                 {
                     if($_POST['holiday_name']==$data['day_name'])
                     {
@@ -46,7 +46,7 @@ if(!Login())
             {
                 $f=0;
                 $q = mysql_query("SELECT * FROM holidays");
-                while ($data = mysql_fetch_array($q)) 
+                while ($data = mysql_fetch_array($q))
                 {
                     if($_POST['date']==$data['date'])
                     {
@@ -109,19 +109,19 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:150px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:150px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
-    </nav> 
+    </nav>
     <div class="contact-clean" style="background-color:rgba(241,247,252,0);">
         <form method="post">
             <h2 class="text-center">Add a new Holiday</h2><br>
             <div class="form-group">
-                
+
                 <input class="form-control" style="width:100%;" type="text" name="holiday_name" value="<?php echo isset($_POST['holiday_name']) ? $_POST['holiday_name'] : '' ?>" placeholder="Holiday Name">
                 <div class="Error">
                         <?php echo $HDerror; ?>
                     </div>
-                
+
                 <input class="form-control" type="date" name="date" value="<?php echo isset($_POST['date']) ? $_POST['date'] : '' ?>" style="margin-top:29px; width:100%;">
                 <div class="Error">
                         <?php echo $daterror; ?>
@@ -132,10 +132,10 @@ if(!Login())
                 class="btn btn-primary" type="submit" name="add_button" style="background-color:#1a0448;font-family:Roboto, sans-serif;margin-left:153px;margin-top:42px;">ADD</button>
         </form>
 
-        
+
 
     </div>
-    
+
 </body>
 
 </html>

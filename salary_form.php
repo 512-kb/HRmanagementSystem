@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -9,7 +9,7 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 ?>
 
@@ -97,7 +97,7 @@ if(!Login())
          }
          $leaves = 0;
          $q = mysql_query("SELECT * FROM attendance WHERE status='Absent' AND id='$id'");
-         while ($data = mysql_fetch_array($q)) 
+         while ($data = mysql_fetch_array($q))
          {
             if($year == substr($data['date'],0,4) && $month == substr($data['date'],5,2) )
             {
@@ -125,25 +125,25 @@ if(!Login())
         {
             $exists=0;
             $fetch = mysql_query("SELECT * FROM salary");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$id)
                 {
-                    $exists=1; 
+                    $exists=1;
                     break;
                 }
             }
-            if($exists==0) 
+            if($exists==0)
             {
-                $exec = mysql_query("INSERT INTO salary VALUES($id,$gpf,$gsi,$ta,$da,$deduction)");            
+                $exec = mysql_query("INSERT INTO salary VALUES($id,$gpf,$gsi,$ta,$da,$deduction)");
                 if($exec)
                 {
                     echo "
                             <script>
                                 alert(\"Record Entered\");
                             </script>
-                        ";  
-                }    
+                        ";
+                }
             }
             else
             {
@@ -154,7 +154,7 @@ if(!Login())
                             <script>
                                 alert(\"Record Entered\");
                             </script>
-                        ";  
+                        ";
                 }
             }
         }
@@ -168,7 +168,7 @@ if(!Login())
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
@@ -193,7 +193,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo strtoupper($_SESSION['UserId']); ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo strtoupper($_SESSION['UserId']); ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
 
@@ -203,26 +203,26 @@ if(!Login())
                 <h2 class="text-center" style="color:#1a0448;font-size:42px;margin-top:-10px;"><strong><?php echo $_SESSION['nameSAL']; ?>'s Salary</strong></h2>
                 <div class="form-group">
                     <legend>General Deductions</legend>
-                    
+
                 	GPF (percent):<div class="Error">
                         <?php echo $GPFerror; ?>
                     </div><input class="form-control" type="number" name="GPF" placeholder="Enter Here" value="<?php echo isset($_POST['GPF']) ? $_POST['GPF'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;">
-                    
+
                     GSI (amount):<div class="Error">
                         <?php echo $GSIerror; ?>
                     </div><input class="form-control" type="number" name="GSI" placeholder="Enter Here" value="<?php echo isset($_POST['GSI']) ? $_POST['GSI'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;">
-                    
+
                     <legend>Allowances</legend>
-                    
+
                     TA (amount):<div class="Error">
                         <?php echo $TAerror; ?>
                     </div><input class="form-control" type="number" name="TA" placeholder="Enter Here" value="<?php echo isset($_POST['TA']) ? $_POST['TA'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;">
-                    
-                    
+
+
                     DA (amount):<div class="Error">
                         <?php echo $DAerror; ?>
                     </div><input class="form-control" type="number" name="DA" placeholder="Enter Here" value="<?php echo isset($_POST['DA']) ? $_POST['DA'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;">
-                    
+
                     <legend>Leave Deduction</legend>
                     Month:
                     <select class="form-control" style="margin-bottom:14px; background-color: white; width:200px; " name="month">
@@ -239,16 +239,16 @@ if(!Login())
                         <option value="11">November</option>
                         <option value="12">December</option>
                     </select>
-                    
+
                         Year:<div class="Error">
                         <?php echo $yearerror; ?>
-                    </div><input class="form-control" type="text" name="year" placeholder="Enter Here" value="<?php echo isset($_POST['year']) ? $_POST['year'] : '' ?>" style=" margin-bottom:14px; width: 200px; background-color: white;">                  
-                                 
+                    </div><input class="form-control" type="text" name="year" placeholder="Enter Here" value="<?php echo isset($_POST['year']) ? $_POST['year'] : '' ?>" style=" margin-bottom:14px; width: 200px; background-color: white;">
+
                     Deduction Per Leave (amount):<div class="Error">
                         <?php echo $dederror; ?>
-                    </div> <input class="form-control" type="number" name="ded" placeholder="Enter Here" value="<?php echo isset($_POST['ded']) ? $_POST['ded'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;"> 
-                        
-                	
+                    </div> <input class="form-control" type="number" name="ded" placeholder="Enter Here" value="<?php echo isset($_POST['ded']) ? $_POST['ded'] : '' ?>" style="margin-bottom:14px; width: 200px; background-color: white;">
+
+
                     <input type="Submit" class="btn btn-primary btn-block flex-shrink-1 align-self-center" style="background-color:rgb(43,47,129);width:auto;margin-left:334px;" name="Submit" value="SUBMIT">
                 </div>
             </form>
@@ -256,4 +256,4 @@ if(!Login())
     </div>
 
 </body>
-</html>															
+</html>

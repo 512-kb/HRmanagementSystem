@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,7 +10,7 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
@@ -57,7 +57,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
     <div><center>
@@ -65,8 +65,8 @@ if(!Login())
             <h2 class="text-center" style="margin-top: 20px; margin-bottom: 50px;">Holiday List</h2>
             <div class="table-responsive">
             <table class="table">
-                
-                
+
+
 
 
 <table id="example" class="table table-striped table-bordered" width="100%">
@@ -81,21 +81,21 @@ if(!Login())
         <?php
             mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
             $q=mysql_query("SELECT * FROM holidays");
-            while ($data=mysql_fetch_array($q)) 
+            while ($data=mysql_fetch_array($q))
             {
-                $name=$data['day_name']; $date=$data['date'];              
+                $name=$data['day_name']; $date=$data['date'];
                 $dte = date_format(date_create($date),"d F, Y");
-                
+
                 echo "<tr>
                         <td>".$name."</td>
-                        <td>".$dte."</td>                        
-                        <td><a href=\"Delete_holiday.php?Delete_holiday=".$date."\"><img name=".$date." width=35 height=35 src=\"assets/img/remove.png\"></a></td>        
-                    </tr>                 
-                    ";                
-            }  
+                        <td>".$dte."</td>
+                        <td><a href=\"Delete_holiday.php?Delete_holiday=".$date."\"><img name=".$date." width=35 height=35 src=\"assets/img/remove.png\"></a></td>
+                    </tr>
+                    ";
+            }
 
         ?>
-        
+
     </tbody>
  </table>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,7 +10,7 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
@@ -32,11 +32,11 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM emp_list WHERE department='$dept'");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$_POST['emp_id'])
                 {
-                    $id=$_POST['emp_id']; $fname=$data['first_name']; $f=1; 
+                    $id=$_POST['emp_id']; $fname=$data['first_name']; $f=1;
                     break;
                 }
             }
@@ -95,7 +95,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
     <div class="contact-clean" style="background-color:rgba(241,247,252,0);">
@@ -121,7 +121,7 @@ if(!Login())
                 <button class="btn btn-primary" name="submit_button" type="submit" style="margin-left:137px;margin-top:40px;">SUBMIT</button></div>
         </form>
     </div>
-    
+
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 session_start();
 function Login()
 {
@@ -10,28 +10,28 @@ function Login()
 }
 if(!Login())
 {
-    header("Location: Log_in.php");
+    header("Location: index.php");
 }
 
 ?>
 
-    <?php 
+    <?php
 
     $FLAG=0;
     mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
     $daterror = ""; $IDerror=""; $noError = 1; $dept=""; $date=""; $id="";
     if(isset($_POST['present_button']))
-    {        
+    {
         $dept=$_POST['department'];
         if(empty($_POST['date']))
         {
             $daterror = "Date Required"; $noError = 0; $FLAG = 0;
-        }   
+        }
         else
         {
             $exists = 0;
             $q = mysql_query("SELECT * FROM holidays");
-            while ($data  = mysql_fetch_array($q)) 
+            while ($data  = mysql_fetch_array($q))
             {
                 if($_POST['date']==$data['date'])
                 {
@@ -40,8 +40,8 @@ if(!Login())
                     $noError = 0;
                 }
             }
-            if($exists==0) $date=$_POST['date'];     
-        } 
+            if($exists==0) $date=$_POST['date'];
+        }
         if(empty($_POST['ID']))
         {
             $IDerror = "ID Required"; $noError = 0; $FLAG = 0;
@@ -50,11 +50,11 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM emp_list WHERE department='$dept'");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$_POST['ID'])
                 {
-                    $id=$_POST['ID']; $f=1; 
+                    $id=$_POST['ID']; $f=1;
                     break;
                 }
             }
@@ -65,25 +65,25 @@ if(!Login())
         {
             $exists=0;
             $fetch = mysql_query("SELECT * FROM attendance");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$id && $data['date']==$date)
                 {
-                    $exists=1; 
+                    $exists=1;
                     break;
                 }
             }
-            if($exists==0) 
+            if($exists==0)
             {
-                $exec = mysql_query("INSERT INTO attendance VALUES('$id','$dept','$date','Present')");            
+                $exec = mysql_query("INSERT INTO attendance VALUES('$id','$dept','$date','Present')");
                 if($exec)
                 {
                     echo "
                             <script>
                                 alert(\"Attendance Recorded\");
                             </script>
-                        ";  
-                }    
+                        ";
+                }
             }
             else
             {
@@ -94,24 +94,24 @@ if(!Login())
                             <script>
                                 alert(\"Attendance Recorded\");
                             </script>
-                        ";  
+                        ";
                 }
             }
         }
 
     }
     if(isset($_POST['absent_button']))
-    {        
+    {
         $dept=$_POST['department'];
         if(empty($_POST['date']))
         {
             $daterror = "Date Required"; $noError = 0; $FLAG = 0;
-        }   
+        }
         else
         {
             $exists = 0;
             $q = mysql_query("SELECT * FROM holidays");
-            while ($data  = mysql_fetch_array($q)) 
+            while ($data  = mysql_fetch_array($q))
             {
                 if($_POST['date']==$data['date'])
                 {
@@ -120,7 +120,7 @@ if(!Login())
                     $noError = 0;
                 }
             }
-            if($exists==0) $date=$_POST['date'];    
+            if($exists==0) $date=$_POST['date'];
         }
         if(empty($_POST['ID']))
         {
@@ -130,11 +130,11 @@ if(!Login())
         {
             $f=0;
             $fetch = mysql_query("SELECT * FROM emp_list WHERE department='$dept'");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$_POST['ID'])
                 {
-                    $id=$_POST['ID']; $f=1; 
+                    $id=$_POST['ID']; $f=1;
                     break;
                 }
             }
@@ -145,25 +145,25 @@ if(!Login())
         {
             $exists=0;
             $fetch = mysql_query("SELECT * FROM attendance");
-            while ($data = mysql_fetch_array($fetch)) 
+            while ($data = mysql_fetch_array($fetch))
             {
                 if($data['id']==$id && $data['date']==$date)
                 {
-                    $exists=1; 
+                    $exists=1;
                     break;
                 }
             }
-            if($exists==0) 
+            if($exists==0)
             {
-                $exec = mysql_query("INSERT INTO attendance VALUES('$id','$dept','$date','Absent')");            
+                $exec = mysql_query("INSERT INTO attendance VALUES('$id','$dept','$date','Absent')");
                 if($exec)
                 {
                     echo "
                             <script>
                                 alert(\"Attendance Recorded\");
                             </script>
-                        ";  
-                }    
+                        ";
+                }
             }
             else
             {
@@ -174,12 +174,12 @@ if(!Login())
                             <script>
                                 alert(\"Attendance Recorded\");
                             </script>
-                        ";  
+                        ";
                 }
             }
         }
 
-    }  
+    }
 
 ?>
 
@@ -220,7 +220,7 @@ if(!Login())
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="color:#262228;">PAYROLL MANAGEMENT</a>
                         <div class="dropdown-menu" role="menu" style="background-color:#1a0448;"><a class="dropdown-item" role="presentation" href="create_payslip.php" style="color:#ffb800;">CREATE PAY SLIP</a><a class="dropdown-item" role="presentation" href="manage_salaries.php" style="color:#ffb800;">MANAGE SALARIES</a></div>
                     </li>
-                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="Log_In.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
+                </ul><span style="margin-left: 80px; margin-right:20px; color: black"><?php echo $_SESSION['UserId']; ?></span><a class="btn btn-primary" role="button" href="index.php" style="background-color:#1a0448;margin-left:10px;height:40px;width:105px;">SIGN OUT</a></div>
         </div>
     </nav>
      <div class="contact-clean" style="background-color:rgba(241,247,252,0);">
@@ -236,7 +236,7 @@ if(!Login())
                     <option value="Production Department">Production Department</option>
                     <option value="Personnel Department">Personnel Department</option>
                     <option value="Export Department">Export Department</option>
-                </select> 
+                </select>
                 Date:
                 <input class="form-control" type="date" name="date" value="<?php echo isset($_POST['date']) ? $_POST['date'] : '' ?>" style="margin-bottom:0px;width:100%;">
                 <div class="Error">
@@ -254,7 +254,7 @@ if(!Login())
             <button
                 class="btn btn-primary" type="submit" name="absent_button" style="background-color:#1a0448;font-family:Roboto, sans-serif;">ABSENT</button>
             </center>
-        </form>      
+        </form>
     </div>
                     </tbody>
                 </table>
