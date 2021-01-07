@@ -8,4 +8,4 @@ If running for the first time:-
 
 2. create database with name "sql12385657".
 
-3. import the provided 'sql12385657.sql' file
+3. import the provided 'projectsalary.sql' file
