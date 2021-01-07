@@ -18,7 +18,7 @@ if(!Login())
 <?php
 
     $FLAG=0; $f=0;
-    mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
+    mysql_select_db('sql12385657',mysql_connect('sql12.freemysqlhosting.net:3306','sql12385657','d8tvtgY9U9'));
     $daterror = ""; $IDerror=""; $noError = 1; $dept=""; $date="";
     if(isset($_POST['view_button']))
     {
@@ -145,7 +145,7 @@ if(!Login())
     {
         $id=""; $status=""; $name="";
 
-            mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
+            mysql_select_db('sql12385657',mysql_connect('sql12.freemysqlhosting.net:3306','sql12385657','d8tvtgY9U9'));
 
             if(!empty($_POST['emp_id'])) $q=mysql_query("SELECT * FROM attendance WHERE date='$date' AND department='$dept' AND id='$emp_id'");
             else $q=mysql_query("SELECT * FROM attendance WHERE date='$date' AND department='$dept'");

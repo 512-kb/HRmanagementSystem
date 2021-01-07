@@ -88,7 +88,7 @@ if(!Login())
     </thead>
     <tbody>
         <?php
-            mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
+            mysql_select_db('sql12385657',mysql_connect('sql12.freemysqlhosting.net:3306','sql12385657','d8tvtgY9U9'));
             $q=mysql_query("SELECT * FROM emp_list");
             while ($data=mysql_fetch_array($q))
             {

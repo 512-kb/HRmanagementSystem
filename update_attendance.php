@@ -18,7 +18,7 @@ if(!Login())
     <?php
 
     $FLAG=0;
-    mysql_select_db('projectsalary',mysql_connect('localhost','root',''));
+    mysql_select_db('sql12385657',mysql_connect('sql12.freemysqlhosting.net:3306','sql12385657','d8tvtgY9U9'));
     $daterror = ""; $IDerror=""; $noError = 1; $dept=""; $date=""; $id="";
     if(isset($_POST['present_button']))
     {
